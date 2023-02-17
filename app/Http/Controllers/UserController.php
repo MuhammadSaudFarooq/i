@@ -29,6 +29,7 @@ class UserController extends Controller
         // $user_options = User::find(auth()->user()->id)->user_options()->first();
         // $user_options = auth()->user()->load('user_options');
         // $user_options = auth()->user()->user_options()->latest()->skip(2)->take(1)->first();
+        // $user_options = auth()->user()->user_options()->first();
         $user_options = auth()->user()->user_options()->first();
         return view('frontend.dashboard.address',compact('user_options'));
     }
