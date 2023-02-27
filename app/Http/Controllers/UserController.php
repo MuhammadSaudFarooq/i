@@ -31,7 +31,7 @@ class UserController extends Controller
         // $user_options = auth()->user()->user_options()->latest()->skip(2)->take(1)->first();
         // $user_options = auth()->user()->user_options()->first();
         $user_options = auth()->user()->user_options()->first();
-        return view('frontend.dashboard.address',compact('user_options'));
+        return view('frontend.dashboard.address', compact('user_options'));
     }
 
     public function account_detail()
@@ -52,7 +52,11 @@ class UserController extends Controller
         );
 
         $user_options = auth()->user()->user_options()->first();
-        
+        // $user_options = auth()->user()->user_options();
+        // $user_options = auth()->user()->first();
+        // $user_options = User::with("user_options")->find(auth()->user()->id);
+        // dd($user_options);
+
         $user_options->user_id = auth()->user()->id;
         $user_options->address = $request['address'];
         $user_options->city = $request['city'];
@@ -60,7 +64,22 @@ class UserController extends Controller
         $user_options->country = $request['country'];
         $user_options->phone = $request['phone'];
         $user_options->save();
-        
+
         return redirect('dashboard/address');
+    }
+
+    public function user_name(Request $request)
+    {
+        $request->validate(
+            [
+                'name' => 'required|string',
+            ]
+        );
+
+        $user = auth()->user();
+        $user->name = $request['name'];
+        $user->save();
+
+        return redirect('dashboard/account-detail');
     }
 }
