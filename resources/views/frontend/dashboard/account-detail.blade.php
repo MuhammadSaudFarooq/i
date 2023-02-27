@@ -34,13 +34,26 @@
                         <form action="{{ url('dashboard/account-detail') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" name="password" id="password">
+                                <label for="old_password">Old Password:</label>
+                                <input type="password" class="form-control" name="old_password" id="ol_password">
+                                <span class="text-danger">
+                                    @error('old_password')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                             <div class="form-group">
-                                <label for="password">Confirm Password:</label>
-                                <input type="password" class="form-control" name="password_confirmation"
-                                    id="password_confirmation">
+                                <label for="new_password">Password:</label>
+                                <input type="password" class="form-control" name="new_password" id="new_password">
+                                <span class="text-danger">
+                                    @error('new_password')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password_confirmation">Confirm Password:</label>
+                                <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation">
                             </div>
                             <div class="form-group text-right">
                                 <button type="submit" class="btn btn-default">Save</button>

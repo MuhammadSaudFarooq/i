@@ -82,4 +82,14 @@ class UserController extends Controller
 
         return redirect('dashboard/account-detail');
     }
+
+    public function update_password(Request $request)
+    {
+        $request->validate(
+            [
+                'old_password' => 'required',   
+                'new_password' => 'required|confirmed',   
+            ]
+        );
+    }
 }

@@ -44,6 +44,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::post('/address', [UserController::class, 'user_options']);
     Route::get('/account-detail', [UserController::class, 'account_detail']);
     Route::post('/account-detail', [UserController::class, 'user_name']);
+    Route::post('/account-detail', [UserController::class, 'update_password']);
 });
 
 // Guest routes
